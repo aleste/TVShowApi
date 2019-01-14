@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 routes = require('./routes/tvshows')(app);
 
 
-
+/*
 
 const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME || '';
 const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || '';
@@ -38,7 +38,7 @@ mongoose.connect(mongoUrl, function(err, res) {
 		console.log('Connected to Database');
 	}
 });
-
+*/
 
   const ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
   const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
