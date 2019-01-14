@@ -19,16 +19,16 @@ routes = require('./routes/tvshows')(app);
 
 
 
-const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME || '';
-const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || '';
+const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME || 'mongodb';
+const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || 'mongodb';
 const host = process.env.OPENSHIFT_MONGODB_DB_HOST || 'mongodb.node-apis.svc';
-const dbport = process.env.OPENSHIFT_MONGODB_DB_PORT || '';
+const dbport = process.env.OPENSHIFT_MONGODB_DB_PORT || 'mongodb';
 
 const mongoUrl = username + ":"
   + password + "@"
   + host + ':'
   + dbport + '/'
-  + "tvshows";//process.env.OPENSHIFT_APP_NAME;
+  + "sampledb";//process.env.OPENSHIFT_APP_NAME;
 
 //'mongodb://localhost/tvshows'
 mongoose.connect(mongoUrl, function(err, res) {
