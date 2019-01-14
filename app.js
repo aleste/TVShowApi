@@ -16,7 +16,22 @@ app.get('/', function(req, res) {
 
 routes = require('./routes/tvshows')(app);
 
-mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
+
+
+
+const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME || '';
+const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || '';
+const host = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
+const dbport = process.env.OPENSHIFT_MONGODB_DB_PORT || '';
+
+const mongoUrl = username + ":"
+  + password + "@"
+  + host + ':'
+  + dbport + '/'
+  + "tvshows";//process.env.OPENSHIFT_APP_NAME;
+
+//'mongodb://localhost/tvshows'
+mongoose.connect(mongoUrl, function(err, res) {
 	if(err) {
 		console.log('ERROR: connecting to Database. ' + err);
 	} else {
@@ -24,6 +39,9 @@ mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
 	}
 });
 
-server.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
-});
+
+  const ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+  const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000;
+  server.listen(port, ip, function(){
+    console.log("Conectado al puerto a " +ip+":"+port);
+  });
