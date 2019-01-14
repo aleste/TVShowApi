@@ -41,7 +41,7 @@ mongoose.connect(mongoUrl, function(err, res) {
 
 
   const ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-  const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000;
+  const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
   server.listen(port, ip, function(){
     console.log("Conectado al puerto a " +ip+":"+port);
     console.log("el host de la db mongo es?"+process.env.OPENSHIFT_MONGODB_DB_HOST);
