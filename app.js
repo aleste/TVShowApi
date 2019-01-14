@@ -21,7 +21,7 @@ routes = require('./routes/tvshows')(app);
 
 const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME || '';
 const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || '';
-const host = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
+const host = process.env.OPENSHIFT_MONGODB_DB_HOST || 'mongodb.node-apis.svc';
 const dbport = process.env.OPENSHIFT_MONGODB_DB_PORT || '';
 
 const mongoUrl = username + ":"
@@ -44,4 +44,5 @@ mongoose.connect(mongoUrl, function(err, res) {
   const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000;
   server.listen(port, ip, function(){
     console.log("Conectado al puerto a " +ip+":"+port);
+    console.log("el host de la db mongo es?"+process.env.OPENSHIFT_MONGODB_DB_HOST);
   });
